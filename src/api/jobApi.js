@@ -32,3 +32,11 @@ export const deleteJob = (id) => {
         headers: { Authorization: token }
     });
 };
+
+//채용공고 단건 조회 함수 
+export const getJobDetail = (id) => {
+    const token = localStorage.getItem("token");
+    return api.get(`/api/jobs/${id}`, {
+        headers: { Authorization : token }
+    });
+};

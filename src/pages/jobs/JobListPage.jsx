@@ -27,7 +27,8 @@ export default function JobListPage(){
         {jobs.map(job => (
             <div key={job.id}>
                 <p>{job.userId}</p>
-                <p>{job.companyName}</p>
+                <p onClick={() => navigate(`/jobs/${job.id}`)} style={{cursor: "pointer"}}>
+                 {job.companyName}</p>
                 <p>{job.role}</p>
                 <p>{job.jobUrl}</p>
                 <p>{job.platform}</p>
