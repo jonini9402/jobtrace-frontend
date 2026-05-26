@@ -7,6 +7,8 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const navigate = useNavigate();
+  
   const handleLogin = async () => {
     console.log("버튼 클릭됨");
     try {
@@ -14,14 +16,16 @@ export default function LoginPage() {
       localStorage.setItem("token", response.data.accessToken);
       localStorage.setItem("name", response.data.name);
       console.log("로그인 성공"); 
+
+      navigate('/jobs');
     } catch (error) {
       console.log (error);
     }
   };
-  const navigate = useNavigate();
+  
 
   //로그인 성공 후
-  navigate('/jobs');
+
 
   return (
     <div className="page">
