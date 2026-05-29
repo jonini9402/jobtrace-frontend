@@ -7,13 +7,15 @@ export default function JobCreatePage() {
   const [role, setRole] = useState("");
   const [jobUrl, setJobUrl] = useState("");
   const [platform, setPlatform] = useState("");
+  const [experienceLevel, setExperienceLevel] = useState("신입");
   const [deadline, setDeadline] = useState("");
+  const [isAlwaysOpen, setIsAlwaysOpen] = useState(false);
 
   const navigate = useNavigate();
 
   //handle~ 는 버튼을 클릭할 때, useEffect는 페이지 열리자마자 자동으로
   const handleSubmit = async () => {
-    if (!companyName || !role || !deadline) {
+    if (!companyName || !role || (!deadline && !isAlwaysOpen)) {
       alert("회사명, 직무, 마감일은 필수입니다.");
       return;
     }
@@ -23,10 +25,12 @@ export default function JobCreatePage() {
       role,
       jobUrl,
       platform,
-      deadline,
+      deadline: isAlwaysOpen ? null : deadline,
       startDate: today, // 자동으로 오늘 날짜
       status: "관심공고", //자동으로 기본값 설정
       memo: "", //기본값
+      experienceLevel
+
     };
     try {
       await createJobs(jobData);
@@ -134,6 +138,15 @@ export default function JobCreatePage() {
             ) : null}
           </div>
           <div>
+        <label className="text-xs text-gray-500 block mb-1">경력 구분</label>
+         <select value={experienceLevel} onChange={(e) => setExperienceLevel(e.target.value)}
+          className="w-full border border-gray-100 rounded-lg px-3 py-2 text-sm outline-none focus:border-gray-300">
+          <option value="신입">신입</option>
+          <option value="인턴">인턴</option>
+          <option value="경력">경력</option>
+          </select>
+        </div>
+          <div>
             <label className="text-xs text-gray-500 block mb-1">
               공고 링크
             </label>
@@ -145,14 +158,30 @@ export default function JobCreatePage() {
             />
           </div>
           <div>
-            <label className="text-xs text-gray-500 block mb-1">마감일</label>
+    <div className="flex items-center justify-between mb-1">
+        <label className="text-xs text-gray-500">마감일</label>
+        <label className="flex items-center gap-1.5 cursor-pointer">
             <input
-              type="date"
-              value={deadline}
-              onChange={(e) => setDeadline(e.target.value)}
-              className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm outline-none focus:border-gray-400"
+                type="checkbox"
+                checked={isAlwaysOpen}
+                onChange={(e) => {
+                    setIsAlwaysOpen(e.target.checked);
+                    if (e.target.checked) setDeadline("");
+                }}
+                className="w-3 h-3"
             />
-          </div>
+            <span className="text-xs text-gray-400">상시채용</span>
+        </label>
+    </div>
+    {!isAlwaysOpen && (
+        <input
+            type="date"
+            value={deadline}
+            onChange={(e) => setDeadline(e.target.value)}
+            className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm outline-none focus:border-gray-400"
+        />
+    )}
+</div>
           <button
             onClick={handleSubmit}
             className="w-full py-2.5 mt-1 bg-gray-900 text-white rounded-lg text-sm font-medium hover:bg-gray-700"

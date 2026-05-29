@@ -109,6 +109,10 @@ export default function JobDetailPage() {
               </span>
             </div>
             <div className="flex items-center justify-between py-2.5 border-b border-gray-50">
+              <span className="text-xs text-gray-400">경력 구분</span>
+              <span className="text-sm text-gray-700">{job.experienceLevel || '-'}</span>
+            </div>
+            <div className="flex items-center justify-between py-2.5 border-b border-gray-50">
               <span className="text-xs text-gray-400">공고 링크</span>
               <a
                 href={job.jobUrl}

@@ -10,6 +10,7 @@ export default function JobEditPage() {
   const [role, setRole] = useState("");
   const [jobUrl, setJobUrl] = useState("");
   const [platform, setPlatform] = useState("");
+  const [experienceLevel, setExperienceLevel] = useState("신입");
   const [deadline, setDeadline] = useState("");
   const [startDate, setStartDate] = useState("");
   const [job, setJob] = useState(null); //job 객체
@@ -22,6 +23,7 @@ export default function JobEditPage() {
         setRole(job.role);
         setJobUrl(job.jobUrl);
         setPlatform(job.platform);
+        setExperienceLevel(found.experienceLevel || "신입");
         setDeadline(job.deadline);
         setStartDate(job.startDate);
       }
@@ -34,6 +36,7 @@ export default function JobEditPage() {
       role,
       jobUrl,
       platform,
+      experienceLevel,
       deadline,
       startDate: job?.startDate,
     }; // 기존 값 그대로 유지
@@ -141,6 +144,15 @@ export default function JobEditPage() {
               />
             ) : null}
           </div>
+          <div>
+          <label className="text-xs text-gray-500 block mb-1">경력 구분</label>
+        <select value={experienceLevel} onChange={(e) => setExperienceLevel(e.target.value)}
+          className="w-full border border-gray-100 rounded-lg px-3 py-2 text-sm outline-none focus:border-gray-300">
+          <option value="신입">신입</option>
+          <option value="인턴">인턴</option>
+          <option value="경력">경력</option>
+        </select>
+      </div>
           <div>
             <label className="text-xs text-gray-500 block mb-1">
               공고 링크

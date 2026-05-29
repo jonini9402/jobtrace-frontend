@@ -77,9 +77,9 @@ export default function JobListPage() {
     const end = new Date(start);
     end.setDate(start.getDate() + 6);
     return { start, end };
-};
+  };
 
-const filteredJobs = jobs
+ const filteredJobs = jobs
     .filter((j) => {
         if (filter === "전체") return true;
         if (filter === "진행중") return inProgress.includes(j.status);
@@ -88,6 +88,7 @@ const filteredJobs = jobs
     })
     .filter((j) => {
         if (tab !== "timeline") return true;
+        if (!j.deadline) return false; // 타임라인에서 상시채용 제외
         const { start, end } = getWeekRange();
         const deadline = new Date(j.deadline);
         deadline.setHours(0, 0, 0, 0);
@@ -213,11 +214,15 @@ const filteredJobs = jobs
             </div>
             <div className="flex flex-col gap-2">
               {filteredJobs.length === 0 && (
-    <div className="text-center py-16">
-        <p className="text-gray-400 text-sm mb-1">이번 주에 마감되는 공고가 없어요</p>
-        <p className="text-gray-300 text-xs">다른 주를 확인하거나 공고를 등록해보세요</p>
-    </div>
-)}
+                <div className="text-center py-16">
+                  <p className="text-gray-400 text-sm mb-1">
+                    이번 주에 마감되는 공고가 없어요
+                  </p>
+                  <p className="text-gray-300 text-xs">
+                    다른 주를 확인하거나 공고를 등록해보세요
+                  </p>
+                </div>
+              )}
               {filteredJobs.map((job) => {
                 const dd = getDday(job.deadline);
                 return (
@@ -245,7 +250,7 @@ const filteredJobs = jobs
                       </div>
                       <p className="text-xs text-gray-400 m-0">{job.role}</p>
                       <p className="text-xs text-gray-300 mt-0.5">
-                        {job.deadline} 마감
+                        {job.deadline ? `${job.deadline} 마감` : '상시채용'}
                       </p>
                     </div>
                     <div className="flex items-center gap-3">
@@ -253,7 +258,7 @@ const filteredJobs = jobs
                         style={{ color: dd.urgent ? "#c0392b" : "#aaa" }}
                         className="text-sm font-medium"
                       >
-                        {dd.label}
+                        {job.deadline ? dd.label : '상시'}
                       </span>
                       <button
                         onClick={(e) => {
@@ -368,6 +373,29 @@ const filteredJobs = jobs
             </div>
           </div>
         )}
+        {/* 상시채용 공고 */}
+{jobs.filter(j => !j.deadline).length > 0 && (
+    <div className="mt-4">
+        <p className="text-xs text-gray-400 mb-2 font-medium">상시채용 공고</p>
+        <div className="flex flex-col gap-2">
+            {jobs.filter(j => !j.deadline).map(job => (
+                <div key={job.id} onClick={() => navigate(`/jobs/${job.id}`)}
+                    className="bg-white border border-gray-200 rounded-xl px-5 py-3 flex items-center justify-between cursor-pointer">
+                    <div>
+                        <div className="flex items-center gap-2 mb-1">
+                            <span className="text-sm font-medium">{job.companyName}</span>
+                            <span style={{background:statusBg[job.status],color:statusColor[job.status]}}
+                                className="text-xs px-2 py-0.5 rounded-full font-medium">{job.status}</span>
+                        </div>
+                        <p className="text-xs text-gray-400 m-0">{job.role}</p>
+                    </div>
+                    <span className="text-xs text-gray-300">상시채용</span>
+                </div>
+            ))}
+        </div>
+    </div>
+)}
+        
       </div>
     </div>
   );
