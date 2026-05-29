@@ -16,3 +16,19 @@ export const createJobs = (jobData) => {
     });
         
     };
+
+//채용공고 수정 함수
+export const updateJob = (id, jobData) => {
+    const token = (localStorage.getItem("token"));
+    return api.put(`/api/jobs/${id}`, jobData, {
+        headers: {Authorization: token }
+    });
+    };
+
+//채용공고 삭제 함수
+export const deleteJob = (id) => {
+    const token = localStorage.getItem("token");
+    return api.delete(`/api/jobs/${id}`, {
+        headers: { Authorization: token }
+    });
+};

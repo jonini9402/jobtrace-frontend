@@ -3,6 +3,7 @@ import LoginPage from './pages/auth/LoginPage';
 import SignupPage from './pages/auth/SignupPage';
 import JobListPage from './pages/jobs/JobListPage';
 import JobCreatePage from './pages/jobs/JobCreatePage';
+import JobEditPage from './pages/jobs/JobEditPage';
 import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
@@ -20,6 +21,11 @@ function App() {
         <ProtectedRoute>
           <JobCreatePage/>
         </ProtectedRoute>
+      } />
+      <Route path="/jobs/:id/edit" element={
+      <ProtectedRoute>
+        <JobEditPage />
+      </ProtectedRoute>
       } />
       </Routes>
     </BrowserRouter>
