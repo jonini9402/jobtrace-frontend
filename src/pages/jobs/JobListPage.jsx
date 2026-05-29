@@ -11,8 +11,6 @@ export default function JobListPage(){
         });
     }, []);
 
-    const navigate = useNavigate();
-
 
     return <div>공고 목록 페이지
      <div>

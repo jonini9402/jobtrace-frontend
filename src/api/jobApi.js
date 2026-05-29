@@ -7,3 +7,12 @@ export const getJobs = () => {
         headers: { Authorization: token}
     });
 };
+
+//채용공고 등록 함수
+export const createJobs = (jobData) => {
+    const token = (localStorage.getItem("token"));
+    return api.post("/api/jobs", jobData, {
+        headers: { Authorization: token}
+    });
+        
+    };
