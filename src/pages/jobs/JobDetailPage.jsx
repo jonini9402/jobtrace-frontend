@@ -17,7 +17,6 @@ export default function JobDetailPage() {
     });
   }, [id]);
 
-
   if (!job)
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -84,20 +83,22 @@ export default function JobDetailPage() {
         <div className="bg-white border border-gray-200 rounded-2xl p-8">
           {/* 헤더 */}
           <div className="flex items-start justify-between mb-6">
-            <div>
-              <h2 className="text-2xl font-medium mb-1">{job.companyName}</h2>
-              <p className="text-sm text-gray-400">{job.role}</p>
-            </div>
-            <span
-              style={{
-                background: statusBg[job.status],
-                color: statusColor[job.status],
-              }}
-              className="text-xs px-3 py-1 rounded-full font-medium flex-shrink-0"
-            >
-              {job.status}
-            </span>
-          </div>
+    <div>
+        <h2 className="text-2xl font-medium mb-1">{job.companyName}</h2>
+        <p className="text-sm text-gray-400">{job.role}</p>
+    </div>
+    <div className="flex items-center gap-2 flex-shrink-0">
+        <span
+            style={{background:statusBg[job.status], color:statusColor[job.status]}}
+            className="text-xs px-3 py-1 rounded-full font-medium">
+            {job.status}
+        </span>
+        <button onClick={() => navigate(`/jobs/${id}/edit`)}
+            className="text-xs text-gray-500 bg-gray-100 px-3 py-1.5 rounded-lg hover:bg-gray-200 font-medium">
+            수정
+        </button>
+    </div>
+</div>
 
           {/* 정보 */}
           <div className="flex flex-col gap-3 mb-8">
@@ -131,33 +132,32 @@ export default function JobDetailPage() {
               </div>
             </div>
             {/* 메모 */}
-            <div className="flex flex-col gap-1.5 py-2.5 border-b border-gray-50">
+            <div className="flex flex-col gap-1.5 py-4 border-b border-gray-100">
               <span className="text-xs text-gray-400">메모</span>
               <textarea
                 value={memo}
                 onChange={(e) => setMemo(e.target.value)}
                 placeholder="메모를 입력하세요"
                 rows={3}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm outline-none focus:border-gray-400 resize-none"
+                className="w-full border border-gray-100 rounded-lg px-3 py-2 text-sm outline-none focus:border-gray-300 resize-none"
               />
               <button
                 onClick={async () => {
                   await updateMemo(id, memo);
                   alert("저장됐어요.");
                 }}
-                className="self-end text-xs text-gray-500 bg-gray-50 px-3 py-1 rounded-md hover:bg-gray-100"
+                className="w-full py-2 bg-gray-100 text-gray-600 rounded-lg text-sm font-medium hover:bg-gray-200"
               >
                 저장
               </button>
             </div>
-
             {/* 지원 상태 변경 */}
-            <div className="flex flex-col gap-1.5 py-2.5">
+            <div className="flex flex-col gap-1.5 py-4">
               <span className="text-xs text-gray-400">지원 상태</span>
               <select
                 value={status}
                 onChange={(e) => setStatus(e.target.value)}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm outline-none focus:border-gray-400"
+                className="w-full border border-gray-100 rounded-lg px-3 py-2 text-sm outline-none focus:border-gray-300"
               >
                 {[
                   "관심공고",
@@ -181,20 +181,13 @@ export default function JobDetailPage() {
                   await updateStatus(id, status);
                   alert("상태가 변경됐어요.");
                 }}
-                className="self-end text-xs text-gray-500 bg-gray-50 px-3 py-1 rounded-md hover:bg-gray-100"
+                className="w-full py-2 bg-gray-100 text-gray-600 rounded-lg text-sm font-medium hover:bg-gray-200"
               >
                 변경
               </button>
             </div>
+            
           </div>
-
-          {/* 버튼 */}
-          <button
-            onClick={() => navigate(`/jobs/${id}/edit`)}
-            className="w-full py-2.5 bg-gray-900 text-white rounded-lg text-sm font-medium hover:bg-gray-700"
-          >
-            수정하기
-          </button>
         </div>
       </div>
     </div>

@@ -27,8 +27,8 @@ export default function LoginPage() {
   //로그인 성공 후
 
     return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="w-full max-w-md p-10 bg-white border border-gray-200 rounded-2xl">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+        <div className="w-full max-w-sm bg-white border border-gray-100 rounded-2xl p-10 shadow-sm">
             {/* 로고 */}
             <div className="mb-8">
                 <div className="flex items-center gap-2.5 mb-1.5">
@@ -58,7 +58,7 @@ export default function LoginPage() {
                         placeholder="example@email.com"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm outline-none focus:border-gray-400"
+                        className="w-full border border-gray-100 rounded-lg px-3 py-2 text-sm outline-none focus:border-gray-400"
                     />
                 </div>
                 <div>
@@ -68,7 +68,7 @@ export default function LoginPage() {
                         placeholder="비밀번호 입력"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm outline-none focus:border-gray-400"
+                        className="w-full border border-gray-100 rounded-lg px-3 py-2 text-sm outline-none focus:border-gray-400"
                     />
                 </div>
                 <button
