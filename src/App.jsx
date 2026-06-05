@@ -5,6 +5,7 @@ import JobListPage from './pages/jobs/JobListPage';
 import JobCreatePage from './pages/jobs/JobCreatePage';
 import JobEditPage from './pages/jobs/JobEditPage';
 import JobDetailPage from './pages/jobs/JobDetailPage';
+import StatsPage from './pages/stats/StatsPage';
 
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -33,6 +34,11 @@ function App() {
       <Route path="/jobs/:id" element={
       <ProtectedRoute>
         <JobDetailPage />
+      </ProtectedRoute>
+      } />
+      <Route path="/stats" element={
+      <ProtectedRoute>
+        <StatsPage />
       </ProtectedRoute>
       } />
       </Routes>

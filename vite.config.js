@@ -12,6 +12,9 @@ export default defineConfig({
       devOptions: {
         enabled: true, // 개발 환경에서도 PWA 활성화
       },
+      workbox: {
+        navigateFallbackDenylist: [/^\/api/], // API 요청은 캐싱 제외
+       },
       manifest: {
         name: "JobTrace",
         short_name: "잡트",

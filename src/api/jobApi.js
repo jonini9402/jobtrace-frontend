@@ -63,3 +63,10 @@ export const updateMemo = (id, memo) => {
     },
   );
 };
+//통계 api 함수
+export const getStats = () => {
+  const token = localStorage.getItem("token");
+  return api.get("/api/stats", {
+    headers: { Authorization: token }
+  });
+};
