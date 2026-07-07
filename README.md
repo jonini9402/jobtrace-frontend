@@ -1,16 +1,33 @@
-# React + Vite
+# JobTrace Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> 취준생의 지원 현황을 한 곳에서 관리하는 서비스 - 프론트엔드 레포지토리
 
-Currently, two official plugins are available:
+🔗 배포 주소: [http://jobtrace.site](http://jobtrace.site)  
+🔗 백엔드 레포지토리: [https://github.com/jonini9402/jobtrace](https://github.com/jonini9402/jobtrace)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 기술 스택
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| 영역 | 기술 |
+| --- | --- |
+| 프레임워크 | React |
+| 스타일링 | Tailwind CSS |
+| 빌드 도구 | Vite |
+| 인증 | JWT (localStorage) |
+| HTTP 통신 | Axios |
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 로컬 실행 방법
+
+```bash
+# 패키지 설치
+npm install
+
+# 개발 서버 실행
+npm run dev
+```
+
+> 백엔드 서버가 함께 실행되어 있어야 정상 동작합니다.  
+> 백엔드 로컬 실행 방법은 백엔드 레포지토리를 참고해주세요.
