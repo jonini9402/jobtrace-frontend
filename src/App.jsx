@@ -7,11 +7,13 @@ import JobEditPage from './pages/jobs/JobEditPage';
 import JobDetailPage from './pages/jobs/JobDetailPage';
 import StatsPage from './pages/stats/StatsPage';
 
+import Navbar from './components/Navbar';
 import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
     <BrowserRouter>
+    <Navbar />
     <Routes>
       <Route path="/" element={<Navigate to="/login" />} />
       <Route path="/login" element={<LoginPage />} />
