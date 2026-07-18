@@ -128,30 +128,9 @@ export default function JobListPage() {
     <div className="min-h-screen bg-gray-50 p-8">
       <div style={{ maxWidth: "900px", margin: "0 auto" }}>
         {/* 헤더 */}
-        <div className="flex items-center justify-between mb-6">
-  <div className="flex items-center gap-2.5">
-    <div className="w-8 h-8 bg-gray-900 rounded-lg flex items-center justify-center">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="2" y="7" width="20" height="14" rx="2" />
-        <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
-      </svg>
-    </div>
-    <span className="text-lg font-medium">JobTrace</span>
-    <span className="text-sm text-gray-400">잡트</span>
-  </div>
-  <div className="flex items-center gap-2">
-    <button onClick={() => navigate("/stats")}
-      className="text-sm text-gray-500 bg-white border border-gray-200 px-4 py-2 rounded-lg hover:bg-gray-50">
-      내 통계
-    </button>
-    <button onClick={() => navigate("/jobs/create")}
-      className="flex items-center gap-1.5 bg-gray-900 text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-gray-700">
-      + 관심 공고 등록
-    </button>
-  </div>
+<div className="flex items-center justify-end mb-6">
 </div>
         
-
         {/* 탭 + 기간 이동 */}
         <div className="flex items-center justify-between mb-5">
           <div className="flex gap-1 bg-gray-100 rounded-xl p-1">

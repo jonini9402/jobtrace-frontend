@@ -13,7 +13,7 @@ export default function LoginPage() {
     console.log("버튼 클릭됨");
     try {
       const response = await login(email, password);
-      localStorage.setItem("token", response.data.accessToken);
+      localStorage.setItem("token", response.data.accessToken.substring(7));
       localStorage.setItem("name", response.data.name);
       console.log("로그인 성공"); 
 
