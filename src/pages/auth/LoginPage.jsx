@@ -29,7 +29,7 @@ export default function LoginPage() {
     return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
         <div className="w-full max-w-sm bg-white border border-gray-100 rounded-2xl p-10 shadow-sm">
-            {/* 로고 */}
+            {/* 로고  */}
             <div className="mb-8">
                 <div className="flex items-center gap-2.5 mb-1.5">
                     <div className="w-9 h-9 bg-gray-900 rounded-lg flex items-center justify-center flex-shrink-0">
